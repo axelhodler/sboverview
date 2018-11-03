@@ -1,7 +1,7 @@
 {
   let template = document.createElement('template')
   template.innerHTML = `
-    <div id="status">UP</div>
+    <div id="status"></div>
   `
 
   class AhServiceStatus extends HTMLElement {
@@ -15,8 +15,17 @@
     connectedCallback() {
       const serviceName = this.getAttribute("serviceName")
       this.setAttribute('id', serviceName)
-    }
+      let status = this.shadowRoot.querySelector('#status')
 
+      fetch("TBD")
+        .then(response => {
+          if (response.ok) {
+            status.innerHTML = "UP"
+          } else {
+            status.innerHTML = "DOWN"
+          }
+        })
+    }
   }
 
   customElements.define('ah-service-status', AhServiceStatus)
