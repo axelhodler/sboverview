@@ -59,6 +59,18 @@
       assert.equal(actualStatus, 'DOWN')
       done()
     })
+  })
 
+  QUnit.test("it queries the health endpoint of the service", assert => {
+    fetchApiStub.onCall(0).returns(error());
+    const serviceName = 'baz-service'
+    component.setAttribute('serviceName', serviceName)
+    document.body.appendChild(component)
+
+    let done = assert.async()
+    setTimeout(_ => {
+      assert.equal(fetchApiStub.getCall(0).args[0], '/baz-service/management/health')
+      done()
+    })
   })
 }

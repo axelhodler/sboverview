@@ -17,7 +17,7 @@
       this.setAttribute('id', serviceName)
       let status = this.shadowRoot.querySelector('#status')
 
-      fetch("TBD")
+      fetch(`/${serviceName}/management/health`)
         .then(response => {
           if (response.ok) {
             status.innerHTML = "UP"
