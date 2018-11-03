@@ -73,4 +73,21 @@
       done()
     })
   })
+
+  QUnit.test("it displays the name of the service with its status", assert => {
+    fetchApiStub.onCall(0).returns(error());
+    const serviceName = 'fobronik-service'
+    component.setAttribute('serviceName', serviceName)
+    document.body.appendChild(component)
+
+    let done = assert.async()
+    setTimeout(_ => {
+      const webComponent = document.getElementById(serviceName).shadowRoot
+      const serviceNameHeader = webComponent.querySelector('#service-name').innerText
+      assert.equal(serviceNameHeader, serviceName)
+      const actualStatus = webComponent.querySelector('#status').innerText
+      assert.equal(actualStatus, 'DOWN')
+      done()
+    })
+  })
 }
