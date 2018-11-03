@@ -1,0 +1,14 @@
+{
+  "name": "ijob",
+  "version": "1.0.0",
+  "description": "## Tests",
+  "main": "_service_status_test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sinon": "^7.1.1"
+  }
+}
