@@ -3,7 +3,7 @@
   let fetchApiStub
   let SUCCESSFUL_RESPONSE = { "status": "UP" }
 
-  function error() {
+  const error = () => {
     var mockResponse = new window.Response(JSON.stringify("error"), {
       status: 500
     });
@@ -11,7 +11,7 @@
     return Promise.resolve(mockResponse);
   }
 
-  function jsonOk (body) {
+  const jsonOk = (body) => {
     var mockResponse = new window.Response(JSON.stringify(body), {
       status: 200,
       headers: {
@@ -21,7 +21,6 @@
 
    return Promise.resolve(mockResponse);
   }
-
 
   QUnit.testStart(() => {
     fetchApiStub = sinon.stub(window, 'fetch');
