@@ -21,12 +21,15 @@
       let status = this.shadowRoot.querySelector('#status')
 
       status.innerHTML = "DOWN"
+      status.setAttribute('style', 'background: red')
       fetch(`/${serviceName}/management/health`)
         .then(response => {
           if (response.ok) {
             status.innerHTML = "UP"
+            status.setAttribute('style', 'background: green')
           } else {
             status.innerHTML = "DOWN"
+            status.setAttribute('style', 'background: red')
           }
         })
     }
