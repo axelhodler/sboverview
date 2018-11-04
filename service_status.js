@@ -22,7 +22,7 @@
 
       status.innerHTML = "DOWN"
       status.setAttribute('style', 'background: red')
-      fetch(`/${serviceName}/management/health`)
+      fetch(`${window.location.href}/${serviceName}/management/health`)
         .then(response => {
           if (response.ok) {
             status.innerHTML = "UP"
