@@ -22,6 +22,11 @@
    return Promise.resolve(mockResponse);
   }
 
+  const setupComponentWithServiceName = (serviceName) => {
+    component.setAttribute('serviceName', serviceName)
+    document.body.appendChild(component)
+  }
+
   QUnit.testStart(() => {
     fetchApiStub = sinon.stub(window, 'fetch');
     component = document.createElement('ah-service-status')
@@ -35,8 +40,7 @@
   QUnit.test("it displays OK if service is up", assert => {
     fetchApiStub.onCall(0).returns(jsonOk(SUCCESSFUL_RESPONSE));
     const serviceName = 'foo-service'
-    component.setAttribute('serviceName', serviceName)
-    document.body.appendChild(component)
+    setupComponentWithServiceName(serviceName)
 
     let done = assert.async()
     setTimeout(_ => {
@@ -49,8 +53,7 @@
   QUnit.test("it displays DOWN if service is down", assert => {
     fetchApiStub.onCall(0).returns(error());
     const serviceName = 'bar-service'
-    component.setAttribute('serviceName', serviceName)
-    document.body.appendChild(component)
+    setupComponentWithServiceName(serviceName)
 
     let done = assert.async()
     setTimeout(_ => {
@@ -62,9 +65,7 @@
 
   QUnit.test("it queries the health endpoint of the service", assert => {
     fetchApiStub.onCall(0).returns(error());
-    const serviceName = 'baz-service'
-    component.setAttribute('serviceName', serviceName)
-    document.body.appendChild(component)
+    setupComponentWithServiceName('baz-service')
 
     let done = assert.async()
     setTimeout(_ => {
@@ -76,8 +77,7 @@
   QUnit.test("it displays the name of the service with its status", assert => {
     fetchApiStub.onCall(0).returns(error());
     const serviceName = 'fobronik-service'
-    component.setAttribute('serviceName', serviceName)
-    document.body.appendChild(component)
+    setupComponentWithServiceName(serviceName)
 
     let done = assert.async()
     setTimeout(_ => {
