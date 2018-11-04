@@ -20,6 +20,7 @@
 
       let status = this.shadowRoot.querySelector('#status')
 
+      status.innerHTML = "DOWN"
       fetch(`/${serviceName}/management/health`)
         .then(response => {
           if (response.ok) {

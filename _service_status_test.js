@@ -63,6 +63,19 @@
     })
   })
 
+  QUnit.test("it displays DOWN if service status is unknown", assert => {
+    fetchApiStub.onCall(0).returns(Promise.reject("unknown"));
+    const serviceName = 'bee-service'
+    setupComponentWithServiceName(serviceName)
+
+    let done = assert.async()
+    setTimeout(_ => {
+      const actualStatus = document.getElementById(serviceName).shadowRoot.querySelector('#status').innerText
+      assert.equal(actualStatus, 'DOWN')
+      done()
+    })
+  })
+
   QUnit.test("it queries the health endpoint of the service", assert => {
     fetchApiStub.onCall(0).returns(error());
     setupComponentWithServiceName('baz-service')
