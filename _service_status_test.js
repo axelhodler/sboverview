@@ -63,7 +63,7 @@
     })
   })
 
-  QUnit.test("it displays DOWN if service status is unknown", assert => {
+  QUnit.test("it displays UNKNOWN if service status is unknown", assert => {
     fetchApiStub.onCall(0).returns(Promise.reject("unknown"));
     const serviceName = 'bee-service'
     setupComponentWithServiceName(serviceName)
@@ -71,7 +71,7 @@
     let done = assert.async()
     setTimeout(_ => {
       const actualStatus = document.getElementById(serviceName).shadowRoot.querySelector('#status').innerText
-      assert.equal(actualStatus, 'DOWN')
+      assert.equal(actualStatus, 'UNKNOWN')
       done()
     })
   })

@@ -20,8 +20,8 @@
 
       let status = this.shadowRoot.querySelector('#status')
 
-      status.innerHTML = "DOWN"
-      status.setAttribute('style', 'background: red')
+      status.innerHTML = "UNKNOWN"
+      status.setAttribute('style', 'background: lightgrey')
       fetch(`${window.location.href}/${serviceName}/management/health`)
         .then(response => {
           if (response.ok) {
