@@ -83,7 +83,7 @@
     let done = assert.async()
     setTimeout(_ => {
       assert.equal(fetchApiStub.getCall(0).args[0],
-        `${window.location.href}/baz-service/management/health`)
+        `${window.location.origin}/baz-service/management/health`)
       done()
     })
   })
